@@ -1,4 +1,5 @@
 import 'package:cooking/img/img.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -18,8 +19,9 @@ class _BeginningState extends State<Beginning> {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: AppBar(
-        backgroundColor: Colors.amber[500],
+        backgroundColor: Colors.transparent,
         title: const Text(
           'Готовим',
           style: TextStyle(color: Colors.white),
@@ -31,7 +33,6 @@ class _BeginningState extends State<Beginning> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               child: Container(
@@ -61,7 +62,6 @@ class _BeginningState extends State<Beginning> {
                 ),
               ),
             ),
-
             SizedBox(
               height: h * 0.74,
               width: w,
@@ -70,12 +70,10 @@ class _BeginningState extends State<Beginning> {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
-                  // final images = ImageFromNetvork(
-
-                  // );
+                
                   return Container(
                     decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(24)),
                     margin:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -83,11 +81,31 @@ class _BeginningState extends State<Beginning> {
                     width: w * 0.2,
                     child: Column(
                       children: [
-                        SizedBox(
-                          width: w,
-                          height: h * 0.12,
-                          child: Image.network(image.homimag[index]),
-                        )
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(24),
+                            topRight: Radius.circular(24),
+                          ),
+                          child: SizedBox(
+                            width: w,
+                            height: h * 0.2,
+                            child: Image.network(
+                              image.homimag[index],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          ' - Кебаб', 
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: h * 0.04,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Center(
+                          child: Text('Рисепт'),
+                        ),
                       ],
                     ),
                   );
